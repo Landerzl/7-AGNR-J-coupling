@@ -1,27 +1,30 @@
-# Magnetic Coupling in 7-AGNRs
+# 7-AGNR Magnetic Coupling Analysis
 
-This repository contains scripts and calculations to study the magnetic exchange coupling ($J$) in finite armchair graphene nanoribbons of the 7-AGNR type.
+This repository contains computational tools and scripts to study the magnetic exchange coupling ($J$) in finite 7-Armchair Graphene Nanoribbons (7-AGNRs). The project systematically compares two theoretical approaches to evaluate the magnetic interactions as a function of the nanoribbon length.
 
-## Contents
+## Project Structure
 
-- **`Main/sisl_hubbard_7agnr.py`**: This is the main script of the project. It builds the geometry of the nanoribbons for different lengths, defines the Tight-Binding Hamiltonian, and calculates $J$ using two different approaches for comparison:
-  1. **Effective Hubbard Dimer**: A simplified model that extracts $t_{\mathrm{eff}}$ and $U_{\mathrm{eff}}$ to yield $J = 4t_{\mathrm{eff}}^2 / U_{\mathrm{eff}}$.
-  2. **Mean-Field Hubbard (MFH)**: An iterative self-consistent calculation that evaluates the actual energy difference between the Ferromagnetic (FM) and Antiferromagnetic (AFM) states.
-- **`Main/23-06-2026.py`**: An auxiliary script using only `numpy` and `scipy` to verify the dimer rule and visualize the probability density of the topological states.
-- **`Main/plot_spin_polarization_en.py`**: A utility to visualize how spins are distributed along the zigzag edges of the nanoribbon.
-- **`Main/test_geom.py`**: A quick test script to ensure that pruning the ribbon doesn't leave unwanted dangling bonds.
+*   **`Main/`**: Contains the core Python scripts for the simulations.
+    *   `sisl_hubbard_7agnr.py`: The primary script of the project. It uses the `sisl` library to construct the finite 7-AGNR geometries and evaluates the exchange coupling $J$ using two methods:
+        1.  **Effective Hubbard Dimer**: Extracts the effective hopping ($t_{\mathrm{eff}}$) and Coulomb repulsion ($U_{\mathrm{eff}}$) to estimate $J = 4t_{\mathrm{eff}}^2 / U_{\mathrm{eff}}$.
+        2.  **Mean-Field Hubbard (MFH)**: Performs a self-consistent calculation to find the total energy difference between the Ferromagnetic (FM) and Antiferromagnetic (AFM) ground states ($J = E_{\mathrm{FM}} - E_{\mathrm{AFM}}$).
+    *   `plot_spin_polarization_en.py`: Utility script to visualize the spin polarization localized at the zigzag edges of the nanoribbons.
+    *   `test_geom.py`: A helper script to verify that the generated nanoribbon geometries are properly closed and have no unwanted dangling bonds.
+    *   `Figures/`: Directory where the generated plots are saved (e.g., $J$ vs $L$ comparisons, difference between models, and spin distributions).
+*   **`PDF/`**: Contains the LaTeX source (`main_results.tex`) and compiled PDF documents summarizing the main findings and figures of the project.
+*   **`Ref/`**: Contains reference literature and background material, such as thesis documents related to the study.
 
-## Results
+## Key Results
 
-Running the main script generates two comparative plots directly in your directory:
-1. **`J_comparison_vs_L.png`**: Compares how the magnetic coupling $J$ decays exponentially as the ribbon length ($L$) increases. It includes useful reference lines such as the superconducting gap $2\Delta$ of Nb(110) at 3.0 meV and the thermal energy scale of an STM operating at 1.2 K. This allows you to easily see whether $J$ falls within the gap.
-2. **`J_diff_vs_L.png`**: A plot displaying the absolute energy difference (the deviation) between the simple Dimer model and the full MFH simulation.
+The calculations yield comparative plots showing the exponential decay of the magnetic coupling $J$ with respect to the number of DBBA monomers ($L$). The plots include experimental reference scales, such as the superconducting gap of Nb(110) ($2\Delta \approx 3.0$ meV) and the thermal energy at standard STM operating temperatures ($1.2$ K), allowing for a direct assessment of whether the coupling falls within the Kondo regime or the superconducting gap.
 
-## Requirements
+## Dependencies
 
-To run the scripts successfully, your Python virtual environment needs the following installed:
-- `numpy` and `scipy`
-- `matplotlib` (for generating the figures)
-- `sisl` (the key library used to easily define complex geometries and Hamiltonians)
+To run the scripts in this repository, ensure you have the following Python packages installed in your environment:
 
-All the steps are thoroughly documented within the code through comments.
+*   `numpy`
+*   `scipy`
+*   `matplotlib`
+*   `sisl` (Required for building the geometries and setting up the advanced Tight-Binding Hamiltonians)
+
+A local `hubbard` module is also required for the Mean-Field Hubbard calculations.
