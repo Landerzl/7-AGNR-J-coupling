@@ -1,0 +1,69 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{amsmath}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\title{Main Results: Magnetic Coupling in 7-AGNRs}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This document summarizes the main results obtained for the calculation of the magnetic exchange coupling $J$ in finite graphene nanoribbons (7-AGNRs) of different lengths, comparing the Tight-Binding model (effective Hubbard dimer) with the Mean-Field Hubbard (MFH) model.
+
+\section{Geometry}
+First, we verify the geometric construction of the system by removing atoms with coordination 1 at the zigzag edges to ensure a properly terminated finite molecule.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{test_geom_L4.png}
+    \caption{Geometry test for a short 7-AGNR ribbon ($L=4$).}
+    \label{fig:geom}
+\end{figure}
+
+\section{Spin Polarization (AFM and FM)}
+The ground state of the edges exhibits strong localization and spin polarization. Figure \ref{fig:spin} shows the spin polarization profiles calculated using Mean-Field Hubbard (MFH) for the Antiferromagnetic (AFM, open-shell singlet) and Ferromagnetic (FM, triplet) configurations.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{spin_polarization_L6.png}
+    \caption{Spin distribution for the AFM and FM states calculated in a ribbon of length $L=6$.}
+    \label{fig:spin}
+\end{figure}
+
+\section{Magnetic Coupling $J$ Comparison}
+We calculate the magnetic coupling $J$ using two methods:
+\begin{itemize}
+    \item The effective Hubbard dimer rule ($J = 4t_{\mathrm{eff}}^2 / U_{\mathrm{eff}}$) derived from Tight-Binding.
+    \item The energy difference between the FM and AFM states obtained from the MFH self-consistent cycle ($J = E_{\mathrm{FM}} - E_{\mathrm{AFM}}$).
+\end{itemize}
+
+The plot also includes experimental references, such as the superconducting gap $2\Delta$ for Nb(110) and the typical thermal energy scale of an STM operating at 1.2 K.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{J_comparison_vs_L.png}
+    \caption{Comparison of the exchange coupling $J$ extracted by both models as a function of the length $L$ (number of DBBA monomers).}
+    \label{fig:comparison}
+\end{figure}
+
+\section{Energy Difference Between Models}
+To quantitatively observe the deviation between both methods, we analyze the absolute difference of the calculated couplings.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{J_diff_vs_L.png}
+    \caption{Absolute difference $|\Delta J| = |J_{\mathrm{MFH}} - J_{\mathrm{Dimer}}|$ as a function of length $L$.}
+    \label{fig:diff}
+\end{figure}
+
+\end{document}
